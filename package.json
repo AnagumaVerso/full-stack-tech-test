@@ -23,6 +23,7 @@
         "axios": "=1.3.4",
         "laravel-mix": "^6.0.49",
         "laravel-mix-purgecss": "^6.0.0",
-        "vue": "^2.6.12"
+        "vue": "^2.6.12",
+        "vue-router": "^3.6.5"
     }
 }

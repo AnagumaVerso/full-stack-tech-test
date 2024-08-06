@@ -1,48 +1,3 @@
-<script>
-export default {
-  name: 'BookListing',   
-  data() {
-    return {
-      books: [],
-      searchQuery: '',
-      filteredBooks: []
-    };
-  },
-  created() {
-    this.fetchBooks();
-  },
-  methods: {
-    fetchBooks() {
-      axios.get('/api/books')
-        .then(response => {
-          this.books = response.data.data;
-          this.filteredBooks = this.books;
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    },
-    filterBooks() {
-      this.filteredBooks = this.books.filter(book =>
-        book.title.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-    },
-    editBook(book) {
-      // Handle edit book logic here
-    },
-    deleteBook(bookId) {
-      axios.delete(`/api/books/${bookId}`)
-        .then(response => {
-          this.fetchBooks();
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    }
-  }
-};
-</script>
-
 <template>
   <div>
     <div class="bg-gray-800 pt-8 pb-20">
@@ -81,3 +36,50 @@ export default {
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'BookListing',
+  data() {
+    return {
+      books: [],
+      searchQuery: '',
+      filteredBooks: [],
+      editingBook: false,
+      selectedBook: null
+    };
+  },
+  created() {
+    this.fetchBooks();
+  },
+  methods: {
+    fetchBooks() {
+      axios.get('/api/books')
+        .then(response => {
+          this.books = response.data.data;
+          this.filteredBooks = this.books;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+    filterBooks() {
+      this.filteredBooks = this.books.filter(book =>
+        book.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    },
+    editBook(book) {
+      this.$router.push({ name: 'editBook', params: { book: book } });
+    },
+    deleteBook(bookId) {
+      axios.delete(`/api/books/${bookId}`)
+        .then(response => {
+          this.fetchBooks();
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+  }
+};
+</script>

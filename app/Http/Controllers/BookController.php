@@ -32,9 +32,9 @@ class BookController extends Controller
         ]);
     }
 
-    public function update(UpdateRequest $request, Update $update, Book $bookToUpdate)
+    public function update(UpdateRequest $request, Update $update, Book $book)
     {
-        $updatedBook = $update($request->validated(), $bookToUpdate);
+        $updatedBook = $update($request->validated(), $book);
 
         return response()->json([
             'message' => 'Successfully updated the book.',

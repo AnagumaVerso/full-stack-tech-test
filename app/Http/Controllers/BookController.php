@@ -26,6 +26,10 @@ class BookController extends Controller
     {
         $book = $store($request->validated());
 
+        if ($request->has('genres')) {
+            $book->genres()->attach($request->genres);
+        }
+
          return response()->json([
             'message' => 'Successfully stored the book.',
             'data' => $book
@@ -35,6 +39,10 @@ class BookController extends Controller
     public function update(UpdateRequest $request, Update $update, Book $book)
     {
         $updatedBook = $update($request->validated(), $book);
+
+        if ($request->has('genres')) {
+            $updatedBook->genres()->sync($request->genres);
+        }
 
         return response()->json([
             'message' => 'Successfully updated the book.',

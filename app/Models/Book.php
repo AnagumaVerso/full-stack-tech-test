@@ -11,4 +11,9 @@ class Book extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
+
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class);
+    }
 }

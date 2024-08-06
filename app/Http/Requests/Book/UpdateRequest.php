@@ -24,7 +24,8 @@ class UpdateRequest extends FormRequest
         return [
             'title' => 'nullable|string',
             'author' => 'nullable|string',
-            'rating' => 'nullable|integer|min:1|max:10'
+            'rating' => 'nullable|integer|min:1|max:10',
+            'genres' => 'array|exists:genres,id'
         ];
     }
 }

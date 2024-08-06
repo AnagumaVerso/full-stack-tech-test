@@ -14,6 +14,8 @@ require('laravel-mix-purgecss');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+   .js('resources/js/components/BookListing.vue', 'public/js/components')
+   .js('resources/js/components/EditBook.vue', 'public/js/components')
   .sass('resources/scss/app.scss', 'public/css')
   .options({
     postCss: [

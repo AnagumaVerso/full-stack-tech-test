@@ -4,3 +4,37 @@
 /* purgecss end ignore */
 
 @import '~tailwindcss/utilities.css';
+
+$header-color: #E74C3C;
+$paragraph-color: #333;
+$table-border-color: #ddd;
+$table-header-bg-color: #333;
+$table-header-text-color: white;
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+
+  h1 {
+    color: $header-color;
+  }
+
+  p {
+    color: $paragraph-color;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    border: 1px solid $table-border-color;
+    padding: 8px;
+  }
+
+  th {
+    background-color: $table-header-bg-color;
+    color: $table-header-text-color;
+  }
+}

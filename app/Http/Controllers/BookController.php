@@ -44,7 +44,9 @@ class BookController extends Controller
 
     public function destroy(DestroyRequest $request, Destroy $destroy, Book $book)
     {
-        $destroy($book);
+        // TODO: Retain option for admins to completely remove books?
+        // $destroy($book);
+        $book->delete();
 
         return response()->json([
             'message' => 'Successfully deleted the book.',
